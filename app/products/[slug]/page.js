@@ -23,10 +23,10 @@ export default function ProductPage({ params }) {
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-12">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-earth-400 tracking-wide mb-10">
+      <nav className="flex items-center gap-2 text-sm text-earth-400 tracking-wide mb-10">
         <Link href="/" className="hover:text-earth-700 transition-colors">Home</Link>
         <span>/</span>
-        <Link href="/#shop" className="hover:text-earth-700 transition-colors">{product.category}</Link>
+        <Link href={`/collections/${product.categorySlug}`} className="hover:text-earth-700 transition-colors">{product.category}</Link>
         <span>/</span>
         <span className="text-earth-600">{product.name}</span>
       </nav>
@@ -49,7 +49,7 @@ export default function ProductPage({ params }) {
           <h1 className="text-3xl md:text-4xl font-light tracking-wide text-earth-900 leading-snug mb-2">
             {product.name}
           </h1>
-          <p className="text-earth-500 text-sm tracking-wide italic mb-6">{product.tagline}</p>
+          <p className="text-earth-500 text-base tracking-wide italic mb-6">{product.tagline}</p>
 
           <p className="text-2xl font-light tracking-wide text-earth-800 mb-8">
             ${product.price.toFixed(2)}
@@ -73,15 +73,15 @@ export default function ProductPage({ params }) {
 
           {/* Description */}
           <div className="mt-10 pt-10 border-t border-earth-200">
-            <h2 className="text-xs tracking-widest uppercase text-earth-500 mb-4">About this piece</h2>
-            <p className="text-sm leading-relaxed text-earth-700 font-light">{product.description}</p>
+            <h2 className="text-sm tracking-widest uppercase text-earth-500 mb-4">About this piece</h2>
+            <p className="text-[15px] leading-relaxed text-earth-700 font-light">{product.description}</p>
           </div>
 
           {/* Details */}
           <div className="mt-8 pt-8 border-t border-earth-200 space-y-3">
-            <h2 className="text-xs tracking-widest uppercase text-earth-500 mb-4">Details</h2>
+            <h2 className="text-sm tracking-widest uppercase text-earth-500 mb-4">Details</h2>
             <div className="flex gap-4 text-sm">
-              <span className="text-earth-400 w-24 shrink-0 text-xs tracking-wide uppercase">Materials</span>
+              <span className="text-earth-400 w-24 shrink-0 text-sm tracking-wide uppercase">Materials</span>
               <span className="text-earth-700 font-light">{product.materials}</span>
             </div>
             {product.dimensions && (
@@ -98,7 +98,7 @@ export default function ProductPage({ params }) {
 
           {/* Care note */}
           <div className="mt-8 pt-8 border-t border-earth-200">
-            <p className="text-xs tracking-wide text-earth-500 leading-relaxed">
+            <p className="text-sm tracking-wide text-earth-500 leading-relaxed">
               <span className="uppercase tracking-widest">Care: </span>
               Keep away from water and perfume. Store in the pouch provided. Seed beads are durable
               but the thread that holds them is not invincible — treat gently.

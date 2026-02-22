@@ -23,11 +23,11 @@ export default function ProductCard({ product }) {
 
       {/* Product info */}
       <div>
-        <p className="text-[11px] tracking-widest uppercase text-earth-500 mb-0.5">{product.category}</p>
-        <h3 className="text-sm font-light tracking-wide text-earth-900 group-hover:text-clay transition-colors leading-snug">
+        <p className="text-xs tracking-widest uppercase text-earth-500 mb-1">{product.category}</p>
+        <h3 className="text-[15px] font-light tracking-wide text-earth-900 group-hover:text-clay transition-colors leading-snug">
           {product.name}
         </h3>
-        <p className="text-xs text-earth-500 tracking-wide mt-0.5 mb-1">{product.tagline}</p>
+        <p className="text-sm text-earth-500 tracking-wide mt-1 mb-1.5">{product.tagline}</p>
         <p className="text-sm tracking-wide text-earth-800">${product.price.toFixed(2)}</p>
       </div>
     </Link>

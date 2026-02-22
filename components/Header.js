@@ -35,7 +35,7 @@ export default function Header() {
           {/* Desktop nav — left */}
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/#shop" className="nav-link">Shop</Link>
-            <Link href="/cart" className="nav-link">Collections</Link>
+            <Link href="/#shop" className="nav-link">Collections</Link>
             <Link href="/#about" className="nav-link">About</Link>
           </nav>
 
