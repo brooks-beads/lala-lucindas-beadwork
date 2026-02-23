@@ -3,6 +3,7 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useCart } from '@/components/CartProvider'
 
 export default function CartPage() {
@@ -37,7 +38,19 @@ export default function CartPage() {
             <div key={item.id} className="py-8 flex gap-6">
               {/* Image */}
               <Link href={`/products/${item.slug}`} className="shrink-0">
-                <div className={`${item.placeholderClass} w-24 h-28 md:w-32 md:h-40`} />
+                <div className="w-24 h-28 md:w-32 md:h-40 relative overflow-hidden">
+                  {item.photo ? (
+                    <Image
+                      src={item.photo}
+                      alt={item.name}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="128px"
+                    />
+                  ) : (
+                    <div className={`${item.placeholderClass} w-full h-full`} />
+                  )}
+                </div>
               </Link>
 
               {/* Details */}
@@ -111,9 +124,16 @@ export default function CartPage() {
               <span className="text-sm font-light tracking-wide text-earth-900">${cartTotal.toFixed(2)}</span>
             </div>
 
-            <Link href="/checkout" className="btn-primary block text-center w-full">
-              Proceed to Checkout
-            </Link>
+            <button
+              disabled
+              className="btn-primary block text-center w-full opacity-60 cursor-not-allowed"
+              title="Payment coming soon"
+            >
+              Proceed to Payment
+            </button>
+            <p className="text-center text-[11px] tracking-wide text-earth-400 mt-3">
+              Secure checkout — coming soon
+            </p>
 
             <Link href="/#shop" className="block text-center text-xs tracking-widest uppercase text-earth-500 hover:text-earth-800 mt-5 transition-colors">
               ← Continue Shopping
