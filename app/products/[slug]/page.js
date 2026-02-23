@@ -1,23 +1,27 @@
 import { notFound } from 'next/navigation'
-import { getProductBySlug, products } from '@/lib/products'
+import { getProductBySlug, getProducts } from '@/lib/products'
 import AddToCartButton from './AddToCartButton'
 import Link from 'next/link'
+import Image from 'next/image'
+
+export const revalidate = 60
 
 export async function generateStaticParams() {
+  const products = await getProducts()
   return products.map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }) {
-  const product = getProductBySlug(params.slug)
+  const product = await getProductBySlug(params.slug)
   if (!product) return { title: 'Not Found' }
   return {
     title: `${product.name} — Lala Lucinda's Beadwork`,
-    description: product.description.slice(0, 155),
+    description: (product.description || product.tagline || '').slice(0, 155),
   }
 }
 
-export default function ProductPage({ params }) {
-  const product = getProductBySlug(params.slug)
+export default async function ProductPage({ params }) {
+  const product = await getProductBySlug(params.slug)
   if (!product) notFound()
 
   return (
@@ -34,12 +38,19 @@ export default function ProductPage({ params }) {
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
         {/* Product image */}
         <div className="space-y-3">
-          <div className={`${product.placeholderClass} aspect-square w-full`} />
-          {/* Thumbnail row placeholder */}
-          <div className="grid grid-cols-4 gap-2">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className={`${product.placeholderClass} aspect-square opacity-${i === 1 ? '100' : '40'} cursor-pointer hover:opacity-80 transition-opacity`} />
-            ))}
+          <div className="aspect-square w-full relative overflow-hidden">
+            {product.photo ? (
+              <Image
+                src={product.photo}
+                alt={product.name}
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
+            ) : (
+              <div className={`${product.placeholderClass} w-full h-full`} />
+            )}
           </div>
         </div>
 
@@ -49,7 +60,9 @@ export default function ProductPage({ params }) {
           <h1 className="text-3xl md:text-4xl font-light tracking-wide text-earth-900 leading-snug mb-2">
             {product.name}
           </h1>
-          <p className="text-earth-500 text-base tracking-wide italic mb-6">{product.tagline}</p>
+          {product.tagline && (
+            <p className="text-earth-500 text-base tracking-wide italic mb-6">{product.tagline}</p>
+          )}
 
           <p className="text-2xl font-light tracking-wide text-earth-800 mb-8">
             ${product.price.toFixed(2)}
@@ -72,29 +85,19 @@ export default function ProductPage({ params }) {
           <AddToCartButton product={product} />
 
           {/* Description */}
-          <div className="mt-10 pt-10 border-t border-earth-200">
-            <h2 className="text-sm tracking-widest uppercase text-earth-500 mb-4">About this piece</h2>
-            <p className="text-[15px] leading-relaxed text-earth-700 font-light">{product.description}</p>
-          </div>
+          {product.description && (
+            <div className="mt-10 pt-10 border-t border-earth-200">
+              <h2 className="text-sm tracking-widest uppercase text-earth-500 mb-4">About this piece</h2>
+              <p className="text-[15px] leading-relaxed text-earth-700 font-light">{product.description}</p>
+            </div>
+          )}
 
-          {/* Details */}
-          <div className="mt-8 pt-8 border-t border-earth-200 space-y-3">
-            <h2 className="text-sm tracking-widest uppercase text-earth-500 mb-4">Details</h2>
-            <div className="flex gap-4 text-sm">
-              <span className="text-earth-400 w-24 shrink-0 text-sm tracking-wide uppercase">Materials</span>
-              <span className="text-earth-700 font-light">{product.materials}</span>
+          {/* SKU */}
+          {product.sku && (
+            <div className="mt-8 pt-8 border-t border-earth-200">
+              <p className="text-xs tracking-widest uppercase text-earth-400">SKU: {product.sku}</p>
             </div>
-            {product.dimensions && (
-              <div className="flex gap-4 text-sm">
-                <span className="text-earth-400 w-24 shrink-0 text-xs tracking-wide uppercase">Size</span>
-                <span className="text-earth-700 font-light">{product.dimensions}</span>
-              </div>
-            )}
-            <div className="flex gap-4 text-sm">
-              <span className="text-earth-400 w-24 shrink-0 text-xs tracking-wide uppercase">Colors</span>
-              <span className="text-earth-700 font-light capitalize">{product.colors.join(', ')}</span>
-            </div>
-          </div>
+          )}
 
           {/* Care note */}
           <div className="mt-8 pt-8 border-t border-earth-200">

@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation'
-import { products, categories } from '@/lib/products'
+import { getProductsByCategory, categories } from '@/lib/products'
 import ProductCard from '@/components/ProductCard'
 import Link from 'next/link'
+
+export const revalidate = 60
 
 export async function generateStaticParams() {
   return categories.map((c) => ({ category: c.slug }))
@@ -16,11 +18,11 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function CollectionPage({ params }) {
+export default async function CollectionPage({ params }) {
   const cat = categories.find((c) => c.slug === params.category)
   if (!cat) notFound()
 
-  const items = products.filter((p) => p.categorySlug === params.category)
+  const items = await getProductsByCategory(params.category)
 
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-12">
