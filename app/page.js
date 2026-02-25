@@ -139,10 +139,14 @@ export default async function HomePage() {
       {/* ── ABOUT SECTION ────────────────────────────────────────────── */}
       <section id="about" className="py-24 px-6 md:px-12 bg-earth-100">
         <div className="max-w-screen-lg mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div className="aspect-[4/5] placeholder-earth relative overflow-hidden">
-            <div className="absolute inset-0 flex items-end p-8">
-              <p className="text-earth-100 text-xs tracking-widest uppercase opacity-60">Lucinda in her studio, 2024</p>
-            </div>
+          <div className="aspect-[4/5] relative overflow-hidden">
+            <Image
+              src="/images/lucinda-portrait.jpg"
+              alt="Lucinda in her studio"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'center top' }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
           <div>
             <p className="section-label mb-3">The maker</p>
