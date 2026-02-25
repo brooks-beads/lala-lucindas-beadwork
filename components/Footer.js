@@ -38,7 +38,7 @@ export default function Footer() {
             <p className="text-lg font-light tracking-[0.15em] uppercase text-earth-100 leading-none">Lucinda&apos;s</p>
             <p className="text-xs tracking-[0.3em] uppercase text-earth-500 leading-none mt-1 mb-4">Beadwork</p>
             <p className="text-earth-400 text-xs leading-relaxed">
-              Handmade jewelry and art, one bead at a time. Made in New Mexico.
+              Handmade jewelry and art, one bead at a time. Made in Northern California.
             </p>
           </div>
 
@@ -46,10 +46,17 @@ export default function Footer() {
           <div>
             <h4 className="text-xs tracking-widest uppercase text-earth-400 mb-4">Shop</h4>
             <ul className="space-y-2.5">
-              {['Necklaces', 'Bracelets', 'Earrings', 'Rings', 'Hair Pieces', 'Wall Art'].map((cat) => (
-                <li key={cat}>
-                  <Link href={`/#${cat.toLowerCase().replace(' ', '-')}`} className="text-earth-300 text-xs hover:text-earth-100 transition-colors tracking-wide">
-                    {cat}
+              {[
+                { name: 'Necklaces',   slug: 'necklaces' },
+                { name: 'Bracelets',   slug: 'bracelets' },
+                { name: 'Earrings',    slug: 'earrings' },
+                { name: 'Rings',       slug: 'rings' },
+                { name: 'Hair Pieces', slug: 'hair-pieces' },
+                { name: 'Apparel',     slug: 'apparel' },
+              ].map((cat) => (
+                <li key={cat.slug}>
+                  <Link href={`/collections/${cat.slug}`} className="text-earth-300 text-xs hover:text-earth-100 transition-colors tracking-wide">
+                    {cat.name}
                   </Link>
                 </li>
               ))}
