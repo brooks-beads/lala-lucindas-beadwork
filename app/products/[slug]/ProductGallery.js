@@ -7,19 +7,20 @@ export default function ProductGallery({ photos, name, placeholderClass }) {
   const [active, setActive] = useState(0)
 
   if (!photos || photos.length === 0) {
-    return <div className={`${placeholderClass} w-full aspect-[3/4]`} />
+    return <div className={`${placeholderClass} w-full aspect-square`} />
   }
 
   return (
     <div className="space-y-3">
-      {/* Main image — contain so the full piece is always visible */}
-      <div className="aspect-[3/4] w-full relative bg-earth-100">
+      {/* Main image — natural dimensions, no letterboxing */}
+      <div className="w-full bg-earth-100">
         <Image
           src={photos[active]}
           alt={name}
-          fill
-          style={{ objectFit: 'contain' }}
+          width={0}
+          height={0}
           sizes="(max-width: 768px) 100vw, 50vw"
+          style={{ width: '100%', height: 'auto' }}
           priority
         />
       </div>

@@ -5,13 +5,13 @@ export default function ProductCard({ product }) {
   return (
     <Link href={`/products/${product.slug}`} className="group block">
       {/* Image */}
-      <div className="product-img-wrap aspect-[3/4] w-full mb-3 relative overflow-hidden">
+      <div className="product-img-wrap aspect-square w-full mb-3 relative overflow-hidden bg-earth-100">
         {product.photo ? (
           <Image
             src={product.photo}
             alt={product.name}
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'contain' }}
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
           />
         ) : (
