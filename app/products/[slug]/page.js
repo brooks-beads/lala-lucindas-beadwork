@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import { getProductBySlug, getProducts } from '@/lib/products'
 import AddToCartButton from './AddToCartButton'
+import ProductGallery from './ProductGallery'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export const revalidate = 60
 
@@ -37,22 +37,11 @@ export default async function ProductPage({ params }) {
 
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
         {/* Product image */}
-        <div className="space-y-3">
-          <div className="aspect-square w-full relative overflow-hidden">
-            {product.photo ? (
-              <Image
-                src={product.photo}
-                alt={product.name}
-                fill
-                style={{ objectFit: 'cover' }}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            ) : (
-              <div className={`${product.placeholderClass} w-full h-full`} />
-            )}
-          </div>
-        </div>
+        <ProductGallery
+          photos={product.photos}
+          name={product.name}
+          placeholderClass={product.placeholderClass}
+        />
 
         {/* Product details */}
         <div>
