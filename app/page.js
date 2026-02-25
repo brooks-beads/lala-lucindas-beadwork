@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import ProductCard from '@/components/ProductCard'
 import { getProducts, categories } from '@/lib/products'
 
@@ -15,48 +16,15 @@ export default async function HomePage() {
       {/* ── HERO — Mt Shasta landscape ───────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-end pb-20 px-8 md:px-16 overflow-hidden">
 
-        {/* Mt Shasta SVG landscape background */}
-        {/* To use a real photo: drop hero-shasta.jpg into /public/images/ and replace this div with:
-            <Image src="/images/hero-shasta.jpg" fill style={{objectFit:'cover'}} alt="Mt Shasta" priority /> */}
+        {/* Mt Shasta real photo */}
         <div className="absolute inset-0">
-          <svg
-            preserveAspectRatio="xMidYMax slice"
-            viewBox="0 0 1440 900"
-            className="w-full h-full"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stopColor="#1e2d4a" />
-                <stop offset="35%"  stopColor="#3d6494" />
-                <stop offset="60%"  stopColor="#7baac4" />
-                <stop offset="75%"  stopColor="#a8c4d8" />
-              </linearGradient>
-              <linearGradient id="peak" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"  stopColor="#d8cfc4" />
-                <stop offset="50%" stopColor="#a89880" />
-                <stop offset="100%" stopColor="#7a6a58" />
-              </linearGradient>
-              <linearGradient id="shastina" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"  stopColor="#c4bab0" />
-                <stop offset="100%" stopColor="#6a5a4a" />
-              </linearGradient>
-            </defs>
-            <rect width="1440" height="900" fill="url(#sky)" />
-            <path d="M0 560 Q120 500 280 530 Q400 510 520 540 L520 900 L0 900 Z" fill="#4a6a84" opacity="0.4" />
-            <path d="M920 540 Q1080 510 1200 530 Q1340 515 1440 545 L1440 900 L920 900 Z" fill="#4a6a84" opacity="0.4" />
-            <path d="M420 680 L600 330 L760 680 Z" fill="url(#shastina)" opacity="0.88" />
-            <path d="M568 400 L600 330 L632 400 L620 415 L600 395 L580 415 Z" fill="#f0ece4" opacity="0.92" />
-            <path d="M580 720 L820 120 L1060 720 Z" fill="url(#peak)" />
-            <path d="M768 230 L820 120 L872 230 L855 250 L838 228 L820 248 L802 228 L785 250 Z" fill="#f5f1ea" opacity="0.96" />
-            <path d="M730 370 Q750 355 770 368 Q760 380 748 390 Z" fill="#f0ece4" opacity="0.7" />
-            <path d="M870 380 Q888 362 905 375 Q895 388 880 398 Z" fill="#f0ece4" opacity="0.65" />
-            <path d="M0 720 Q180 695 360 708 Q540 695 720 702 Q900 692 1080 705 Q1260 695 1440 708 L1440 900 L0 900 Z" fill="#2d4a2d" />
-            <path d="M0 775 Q200 758 400 768 Q600 755 800 765 Q1000 755 1200 768 Q1350 760 1440 768 L1440 900 L0 900 Z" fill="#1a3020" />
-            {[60,160,280,440,600,760,900,1050,1200,1340].map((x, i) => (
-              <polygon key={i} points={`${x},${770-(i%3)*12} ${x-18},820 ${x+18},820`} fill="#0f2015" opacity="0.8" />
-            ))}
-          </svg>
+          <Image
+            src="/images/hero-shasta.jpg"
+            alt="Mt Shasta"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            priority
+          />
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
