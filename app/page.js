@@ -150,24 +150,26 @@ export default async function HomePage() {
           </div>
           <div>
             <p className="section-label mb-3">The maker</p>
-            <h2 className="text-3xl font-light tracking-wide text-earth-900 mb-6">About Lucinda</h2>
+            <h2 className="text-3xl font-light tracking-wide text-earth-900 mb-6">About Lala Lucinda</h2>
             <div className="space-y-4 text-earth-700 text-[15px] leading-relaxed font-light">
               <p>
-                I&apos;ve been beading since I was eleven years old, when my grandmother sat me down
-                at her kitchen table with a needle, a spool of thread, and a jar of tiny glass beads.
-                She didn&apos;t say much — just showed me the first stitch. The rest I figured out slowly,
-                over decades.
+                I was eight years old when my grandmother and my mother introduced me to beading.
+                They became my teachers then and I fell in love with it right away. They both guided
+                me on what to make and how to make it. The rest I figured out slowly, over time.
               </p>
               <p>
-                I&apos;m a member of the Pit River Tribe, and I grew up in the shadow of Mt. Shasta in
-                Northern California. My studio is there still — I work in the early morning, before the
-                rest of the world wakes up, with strong coffee and good light. I make everything myself,
-                start to finish. When you buy from me, you&apos;re buying something I held in my hands
-                for hours.
+                I am an enrolled citizen of the Hewisedawi Band of the Pit River Tribe, and I grew
+                up in the shadow of Mt. Shasta in Northern California.
               </p>
               <p>
-                I name my pieces after things I notice — weather, land, the color of a certain afternoon.
-                I hope you feel that when you wear them.
+                All of my pieces are unique, and I do not replicate any of them, not even in color.
+                I name my pieces after things I notice — weather, land, and the color of a certain
+                morning, afternoon or evening.
+              </p>
+              <p>
+                When you buy from me, you&apos;re buying something I held in my hands for hours.
+                I want my customers to feel special knowing they own a one-of-a-kind Lala Lucinda&apos;s
+                creation. I make everything myself, start to finish.
               </p>
             </div>
             <div className="mt-8">
