@@ -2,12 +2,42 @@
 
 export const dynamic = 'force-dynamic'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useCart } from '@/components/CartProvider'
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } = useCart()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+
+  async function handleCheckout() {
+    if (cart.length === 0) return
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart.map((item) => ({
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            slug: item.slug,
+            photo: item.photo ?? null,
+          })),
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Checkout failed')
+      window.location.href = data.url
+    } catch (err) {
+      setError(err.message)
+      setLoading(false)
+    }
+  }
 
   if (cart.length === 0) {
     return (
@@ -124,15 +154,18 @@ export default function CartPage() {
               <span className="text-sm font-light tracking-wide text-earth-900">${cartTotal.toFixed(2)}</span>
             </div>
 
+            {error && (
+              <p className="text-xs text-red-600 text-center mb-3">{error}</p>
+            )}
             <button
-              disabled
-              className="btn-primary block text-center w-full opacity-60 cursor-not-allowed"
-              title="Payment coming soon"
+              onClick={handleCheckout}
+              disabled={loading}
+              className={`btn-primary block text-center w-full transition-opacity ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
-              Proceed to Payment
+              {loading ? 'Redirecting to Stripe…' : 'Proceed to Payment'}
             </button>
             <p className="text-center text-[11px] tracking-wide text-earth-400 mt-3">
-              Secure checkout — coming soon
+              Secure checkout via Stripe
             </p>
 
             <Link href="/#shop" className="block text-center text-xs tracking-widest uppercase text-earth-500 hover:text-earth-800 mt-5 transition-colors">

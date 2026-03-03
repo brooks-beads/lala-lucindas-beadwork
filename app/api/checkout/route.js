@@ -29,6 +29,7 @@ export async function POST(request) {
         product_data: {
           name: item.name,
           description: `Handmade by Lala Lucinda — ${item.name}`,
+          ...(item.photo ? { images: [item.photo] } : {}),
           metadata: { slug: item.slug },
         },
         unit_amount: Math.round(item.price * 100), // cents
@@ -63,7 +64,7 @@ export async function POST(request) {
         },
       },
     ],
-    success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${origin}/order-success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/cart`,
     metadata: {
       source: "lala-lucindas-beadwork",
