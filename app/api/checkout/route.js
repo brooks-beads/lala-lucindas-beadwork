@@ -21,6 +21,60 @@ export async function POST(request) {
 
   const origin = request.headers.get('origin') || 'http://localhost:3000'
 
+  // Free standard shipping on orders $75+
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const qualifiesForFreeShipping = subtotal >= 75
+
+  const shippingOptions = qualifiesForFreeShipping
+    ? [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 0, currency: 'usd' },
+            display_name: 'Standard Shipping (Free)',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 3 },
+              maximum: { unit: 'business_day', value: 7 },
+            },
+          },
+        },
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 1200, currency: 'usd' },
+            display_name: 'Priority Shipping',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 1 },
+              maximum: { unit: 'business_day', value: 3 },
+            },
+          },
+        },
+      ]
+    : [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 700, currency: 'usd' },
+            display_name: 'Standard Shipping',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 3 },
+              maximum: { unit: 'business_day', value: 7 },
+            },
+          },
+        },
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 1900, currency: 'usd' },
+            display_name: 'Priority Shipping',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 1 },
+              maximum: { unit: 'business_day', value: 3 },
+            },
+          },
+        },
+      ]
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: items.map((item) => ({
@@ -32,7 +86,7 @@ export async function POST(request) {
           ...(item.photo ? { images: [item.photo] } : {}),
           metadata: { slug: item.slug },
         },
-        unit_amount: Math.round(item.price * 100), // cents
+        unit_amount: Math.round(item.price * 100),
       },
       quantity: item.quantity,
     })),
@@ -40,34 +94,11 @@ export async function POST(request) {
     shipping_address_collection: {
       allowed_countries: ['US', 'CA'],
     },
-    shipping_options: [
-      {
-        shipping_rate_data: {
-          type: 'fixed_amount',
-          fixed_amount: { amount: 0, currency: 'usd' },
-          display_name: 'Free Shipping',
-          delivery_estimate: {
-            minimum: { unit: 'business_day', value: 3 },
-            maximum: { unit: 'business_day', value: 7 },
-          },
-        },
-      },
-      {
-        shipping_rate_data: {
-          type: 'fixed_amount',
-          fixed_amount: { amount: 1200, currency: 'usd' },
-          display_name: 'Priority Shipping',
-          delivery_estimate: {
-            minimum: { unit: 'business_day', value: 1 },
-            maximum: { unit: 'business_day', value: 3 },
-          },
-        },
-      },
-    ],
+    shipping_options: shippingOptions,
     success_url: `${origin}/order-success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/cart`,
     metadata: {
-      source: "lala-lucindas-beadwork",
+      source: 'lala-lucindas-beadwork',
     },
   })
 
