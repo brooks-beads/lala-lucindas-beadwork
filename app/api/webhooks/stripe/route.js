@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-// Required: disable body parsing so we can verify the raw Stripe signature
-export const config = { api: { bodyParser: false } }
-
 export async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: '2024-04-10',
