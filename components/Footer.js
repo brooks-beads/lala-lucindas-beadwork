@@ -1,8 +1,30 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 
 export default function Footer() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState(null) // null | 'loading' | 'success' | 'error'
+
+  async function handleSubscribe(e) {
+    e.preventDefault()
+    if (!email) return
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('success')
+      setEmail('')
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <footer className="bg-earth-900 text-earth-200 mt-24">
       {/* Email signup band */}
@@ -12,19 +34,30 @@ export default function Footer() {
             <p className="text-xs tracking-widest uppercase text-earth-400 mb-1">Stay in touch</p>
             <h3 className="text-lg font-light tracking-wide text-earth-50">Sign up for new pieces & studio notes</h3>
           </div>
-          <form className="flex gap-0 w-full md:w-auto" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="bg-earth-800 border border-earth-600 text-earth-100 placeholder-earth-500 px-4 py-2.5 text-xs tracking-wide flex-1 md:w-64 outline-none focus:border-earth-400 transition-colors"
-            />
-            <button
-              type="submit"
-              className="bg-earth-600 hover:bg-earth-500 text-earth-50 px-5 py-2.5 text-xs tracking-widest uppercase transition-colors border border-earth-600"
-            >
-              Join
-            </button>
-          </form>
+          {status === 'success' ? (
+            <p className="text-sage text-sm tracking-wide font-light">You&apos;re in — check your inbox for a note from Lucinda. ✨</p>
+          ) : (
+            <form className="flex gap-0 w-full md:w-auto" onSubmit={handleSubscribe}>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                required
+                className="bg-earth-800 border border-earth-600 text-earth-100 placeholder-earth-500 px-4 py-2.5 text-xs tracking-wide flex-1 md:w-64 outline-none focus:border-earth-400 transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="bg-earth-600 hover:bg-earth-500 text-earth-50 px-5 py-2.5 text-xs tracking-widest uppercase transition-colors border border-earth-600 disabled:opacity-60"
+              >
+                {status === 'loading' ? '...' : 'Join'}
+              </button>
+            </form>
+          )}
+          {status === 'error' && (
+            <p className="text-clay text-xs tracking-wide">Something went wrong — please try again.</p>
+          )}
         </div>
       </div>
 
