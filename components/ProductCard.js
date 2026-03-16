@@ -35,8 +35,7 @@ export default function ProductCard({ product }) {
         <h3 className="text-[15px] font-light tracking-wide text-earth-900 group-hover:text-clay transition-colors leading-snug">
           {product.name}
         </h3>
-        <p className="text-sm text-earth-500 tracking-wide mt-1 mb-1.5">{product.tagline}</p>
-        <p className="text-sm tracking-wide text-earth-800">${product.price.toFixed(2)}</p>
+<p className="text-sm tracking-wide text-earth-800">${product.price.toFixed(2)}</p>
       </div>
     </Link>
   )

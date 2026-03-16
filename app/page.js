@@ -163,8 +163,6 @@ export default async function HomePage() {
               </p>
               <p>
                 All of my pieces are unique, and I do not replicate any of them, not even in color.
-                I name my pieces after things I notice — weather, land, and the color of a certain
-                morning, afternoon or evening.
               </p>
               <p>
                 When you buy from me, you&apos;re buying something I held in my hands for hours.

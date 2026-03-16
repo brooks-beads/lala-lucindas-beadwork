@@ -49,10 +49,6 @@ export default async function ProductPage({ params }) {
           <h1 className="text-3xl md:text-4xl font-light tracking-wide text-earth-900 leading-snug mb-2">
             {product.name}
           </h1>
-          {product.tagline && (
-            <p className="text-earth-500 text-base tracking-wide italic mb-6">{product.tagline}</p>
-          )}
-
           <p className="text-2xl font-light tracking-wide text-earth-800 mb-8">
             ${product.price.toFixed(2)}
           </p>
@@ -92,7 +88,7 @@ export default async function ProductPage({ params }) {
           <div className="mt-8 pt-8 border-t border-earth-200">
             <p className="text-sm tracking-wide text-earth-500 leading-relaxed">
               <span className="uppercase tracking-widest">Care: </span>
-              Keep away from water and perfume. Store in the pouch provided. Seed beads are durable
+              Keep away from water and perfume. Seed beads are durable
               but the thread that holds them is not invincible — treat gently.
             </p>
           </div>
