@@ -35,7 +35,7 @@ export default function Footer() {
             <h3 className="text-lg font-light tracking-wide text-earth-50">Sign up for new pieces & studio notes</h3>
           </div>
           {status === 'success' ? (
-            <p className="text-sage text-sm tracking-wide font-light">You&apos;re in — check your inbox for a note from Lucinda. ✨</p>
+            <p className="text-sage text-sm tracking-wide font-light">You&apos;re in — stay tuned for updates from Lucinda directly to your inbox. ✨</p>
           ) : (
             <form className="flex gap-0 w-full md:w-auto" onSubmit={handleSubscribe}>
               <input
