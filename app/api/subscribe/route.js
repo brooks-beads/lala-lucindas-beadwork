@@ -24,7 +24,7 @@ export async function POST(request) {
   if (process.env.RESEND_API_KEY) {
     const resend = new Resend(process.env.RESEND_API_KEY)
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'Lala Lucinda <hello@lalalucindas.com>',
       to: email,
       subject: 'You\'re in ✨ — welcome to Lala Lucinda\'s',
@@ -73,6 +73,11 @@ export async function POST(request) {
         </div>
       `,
     })
+    if (error) {
+      console.error('[Subscribe] Resend error:', JSON.stringify(error))
+    } else {
+      console.log('[Subscribe] Email sent, id:', data?.id)
+    }
   }
 
   return NextResponse.json({ success: true })
