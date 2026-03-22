@@ -19,6 +19,7 @@ export default function ProductGallery({ photos, name, placeholderClass }) {
           alt={name}
           width={0}
           height={0}
+          unoptimized
           sizes="(max-width: 768px) 100vw, 50vw"
           style={{ width: '100%', height: 'auto' }}
           priority
@@ -42,6 +43,7 @@ export default function ProductGallery({ photos, name, placeholderClass }) {
                 src={url}
                 alt={`${name} — photo ${i + 1}`}
                 fill
+                unoptimized
                 style={{ objectFit: 'cover' }}
                 sizes="64px"
               />

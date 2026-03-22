@@ -4,7 +4,7 @@ import AddToCartButton from './AddToCartButton'
 import ProductGallery from './ProductGallery'
 import Link from 'next/link'
 
-export const revalidate = 60
+export const revalidate = 300
 
 export async function generateStaticParams() {
   const products = await getProducts()

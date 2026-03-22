@@ -3,7 +3,7 @@ import { getProductsByCategory, categories } from '@/lib/products'
 import ProductCard from '@/components/ProductCard'
 import Link from 'next/link'
 
-export const revalidate = 60
+export const revalidate = 300
 
 export async function generateStaticParams() {
   return categories.map((c) => ({ category: c.slug }))

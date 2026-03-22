@@ -11,6 +11,7 @@ export default function ProductCard({ product }) {
             src={product.photo}
             alt={product.name}
             fill
+            unoptimized
             style={{ objectFit: 'contain' }}
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
           />

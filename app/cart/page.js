@@ -74,6 +74,7 @@ export default function CartPage() {
                       src={item.photo}
                       alt={item.name}
                       fill
+                      unoptimized
                       style={{ objectFit: 'cover' }}
                       sizes="128px"
                     />

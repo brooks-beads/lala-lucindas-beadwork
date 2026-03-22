@@ -3,7 +3,7 @@ import Image from 'next/image'
 import ProductCard from '@/components/ProductCard'
 import { getProducts, categories } from '@/lib/products'
 
-export const revalidate = 60
+export const revalidate = 300
 
 export default async function HomePage() {
   const allProducts = await getProducts()
