@@ -104,7 +104,7 @@ export default function Footer() {
                 { label: 'About Lucinda', href: '/#about' },
                 { label: 'Care & Materials', href: '/#care' },
                 { label: 'Shipping & Returns', href: '/#shipping' },
-                { label: 'Custom Orders', href: '/#custom' },
+                { label: 'Custom Orders', href: '/custom-orders' },
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-earth-300 text-xs hover:text-earth-100 transition-colors tracking-wide">

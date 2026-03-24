@@ -37,6 +37,7 @@ export default function Header() {
             <Link href="/#shop" className="nav-link">Shop</Link>
             <Link href="/#shop" className="nav-link">Collections</Link>
             <Link href="/#about" className="nav-link">About</Link>
+            <Link href="/custom-orders" className="nav-link">Custom Orders</Link>
           </nav>
 
           {/* Logo — center */}
@@ -76,6 +77,7 @@ export default function Header() {
           <div className="md:hidden border-t border-earth-200 bg-earth-50 px-6 py-6 space-y-5">
             <Link href="/#shop" className="block nav-link text-sm py-1" onClick={() => setMenuOpen(false)}>Shop All</Link>
             <Link href="/#about" className="block nav-link text-sm py-1" onClick={() => setMenuOpen(false)}>About</Link>
+            <Link href="/custom-orders" className="block nav-link text-sm py-1" onClick={() => setMenuOpen(false)}>Custom Orders</Link>
             <Link href="/cart" className="block nav-link text-sm py-1" onClick={() => setMenuOpen(false)}>Cart {cartCount > 0 && `(${cartCount})`}</Link>
           </div>
         )}
