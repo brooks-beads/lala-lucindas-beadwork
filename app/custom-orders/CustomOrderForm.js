@@ -2,6 +2,10 @@
 
 import { useState } from 'react'
 
+const inputClass = "w-full border border-smoke/40 bg-white text-ink placeholder-smoke/60 px-4 py-3 text-sm font-light tracking-wide outline-none focus:border-gold transition-colors"
+const labelClass = "block text-xs tracking-widest uppercase text-midnight font-normal mb-2"
+const selectClass = "w-full border border-smoke/40 bg-white text-ink px-4 py-3 text-sm font-light tracking-wide outline-none focus:border-gold transition-colors appearance-none cursor-pointer"
+
 export default function CustomOrderForm() {
   const [form, setForm] = useState({
     name: '',
@@ -36,14 +40,15 @@ export default function CustomOrderForm() {
 
   if (status === 'success') {
     return (
-      <div className="text-center py-12 px-6">
-        <p className="text-xs tracking-widest uppercase text-earth-500 mb-3">Request received</p>
-        <h3 className="text-2xl font-light tracking-wide text-earth-900 mb-4">
-          I'll be in touch soon.
+      <div className="text-center py-12 px-6 bg-cream">
+        <div className="w-8 h-px bg-gold mx-auto mb-6" />
+        <p className="text-xs tracking-widest uppercase text-gold mb-3">Request received</p>
+        <h3 className="font-lora text-2xl font-normal tracking-wide text-midnight mb-4">
+          I&apos;ll be in touch soon.
         </h3>
-        <p className="text-earth-600 font-light leading-relaxed max-w-md mx-auto">
-          I read every custom order request myself. Give me a couple days and I'll reach out to
-          talk through what you're envisioning — no commitment until we both love the idea.
+        <p className="text-slate font-light leading-relaxed max-w-md mx-auto text-sm">
+          I read every custom order request myself. Give me a couple days and I&apos;ll reach out to
+          talk through what you&apos;re envisioning — no commitment until we both love the idea.
         </p>
       </div>
     )
@@ -54,9 +59,7 @@ export default function CustomOrderForm() {
       {/* Name + Email row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-xs tracking-widest uppercase text-earth-600 mb-2">
-            Your Name
-          </label>
+          <label className={labelClass}>Your Name</label>
           <input
             type="text"
             name="name"
@@ -64,13 +67,11 @@ export default function CustomOrderForm() {
             onChange={handleChange}
             required
             placeholder="First & last name"
-            className="w-full border border-earth-300 bg-earth-50 text-earth-900 placeholder-earth-400 px-4 py-3 text-sm font-light tracking-wide outline-none focus:border-earth-600 transition-colors"
+            className={inputClass}
           />
         </div>
         <div>
-          <label className="block text-xs tracking-widest uppercase text-earth-600 mb-2">
-            Email
-          </label>
+          <label className={labelClass}>Email</label>
           <input
             type="email"
             name="email"
@@ -78,23 +79,21 @@ export default function CustomOrderForm() {
             onChange={handleChange}
             required
             placeholder="your@email.com"
-            className="w-full border border-earth-300 bg-earth-50 text-earth-900 placeholder-earth-400 px-4 py-3 text-sm font-light tracking-wide outline-none focus:border-earth-600 transition-colors"
+            className={inputClass}
           />
         </div>
       </div>
 
       {/* Piece type */}
       <div>
-        <label className="block text-xs tracking-widest uppercase text-earth-600 mb-2">
-          What type of piece?
-        </label>
+        <label className={labelClass}>What type of piece?</label>
         <div className="relative">
           <select
             name="pieceType"
             value={form.pieceType}
             onChange={handleChange}
             required
-            className="w-full border border-earth-300 bg-earth-50 text-earth-900 px-4 py-3 text-sm font-light tracking-wide outline-none focus:border-earth-600 transition-colors appearance-none cursor-pointer"
+            className={selectClass}
           >
             <option value="" disabled>Select a piece type</option>
             <option value="Earrings">Earrings</option>
@@ -104,7 +103,7 @@ export default function CustomOrderForm() {
             <option value="Other">Other — I like a challenge! (describe below)</option>
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-            <svg className="w-4 h-4 text-earth-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-smoke" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
             </svg>
           </div>
@@ -113,10 +112,8 @@ export default function CustomOrderForm() {
 
       {/* Budget */}
       <div>
-        <label className="block text-xs tracking-widest uppercase text-earth-600 mb-2">
-          Approximate Budget
-        </label>
-        <p className="text-xs text-earth-500 font-light mb-2 leading-relaxed">
+        <label className={labelClass}>Approximate Budget</label>
+        <p className="text-xs text-smoke font-light mb-2 leading-relaxed">
           Price varies based on size, complexity, and cost of materials. I do my best to
           maximize your value within your budget.
         </p>
@@ -126,7 +123,7 @@ export default function CustomOrderForm() {
             value={form.budget}
             onChange={handleChange}
             required
-            className="w-full border border-earth-300 bg-earth-50 text-earth-900 px-4 py-3 text-sm font-light tracking-wide outline-none focus:border-earth-600 transition-colors appearance-none cursor-pointer"
+            className={selectClass}
           >
             <option value="" disabled>Select a budget range</option>
             <option value="$50–$100">$50–$100</option>
@@ -136,7 +133,7 @@ export default function CustomOrderForm() {
             <option value="$1,000+">$1,000+</option>
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-            <svg className="w-4 h-4 text-earth-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-smoke" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
             </svg>
           </div>
@@ -145,12 +142,10 @@ export default function CustomOrderForm() {
 
       {/* Notes */}
       <div>
-        <label className="block text-xs tracking-widest uppercase text-earth-600 mb-2">
-          Tell Me More
-        </label>
-        <p className="text-xs text-earth-500 font-light mb-2 leading-relaxed">
+        <label className={labelClass}>Tell Me More</label>
+        <p className="text-xs text-smoke font-light mb-2 leading-relaxed">
           Is this a gift? A special occasion? Colors, themes, or anything else that would help me
-          craft something you'll love — share it here.
+          craft something you&apos;ll love — share it here.
         </p>
         <textarea
           name="notes"
@@ -158,13 +153,13 @@ export default function CustomOrderForm() {
           onChange={handleChange}
           rows={5}
           placeholder="e.g. It's for my mom's 60th birthday. She loves turquoise and the Southwest. She's been collecting beadwork her whole life and this would mean the world to her..."
-          className="w-full border border-earth-300 bg-earth-50 text-earth-900 placeholder-earth-400 px-4 py-3 text-sm font-light tracking-wide leading-relaxed outline-none focus:border-earth-600 transition-colors resize-none"
+          className={`${inputClass} resize-none leading-relaxed`}
         />
       </div>
 
       {status === 'error' && (
-        <p className="text-clay text-xs tracking-wide">
-          Something went wrong — please try again or email me directly at brooks@lalalucindas.com.
+        <p className="text-red-500 text-xs tracking-wide">
+          Something went wrong — please try again or email me directly at lala@lalalucindas.com.
         </p>
       )}
 

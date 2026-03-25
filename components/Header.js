@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useState } from 'react'
 import { useCart } from './CartProvider'
 
@@ -20,23 +19,13 @@ export default function Header() {
         <div className="max-w-screen-xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between gap-8">
 
           {/* Logo — left */}
-          <Link href="/" className="shrink-0 flex items-center gap-3">
-            <Image
+          <Link href="/" className="shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/logo.png"
-              alt="Lala Lucinda's logo"
-              width={52}
-              height={52}
-              className="w-12 h-12 object-contain"
-              priority
+              alt="Lala Lucinda's"
+              className="h-12 w-auto object-contain"
             />
-            <div>
-              <p className="font-lora text-xl md:text-2xl tracking-wide text-cream leading-none">
-                Lala Lucinda&apos;s
-              </p>
-              <p className="text-[9px] tracking-[0.28em] uppercase text-gold font-light leading-none mt-0.5">
-                Indigenous Handmade Beadwork
-              </p>
-            </div>
           </Link>
 
           {/* Desktop nav — center/right */}
