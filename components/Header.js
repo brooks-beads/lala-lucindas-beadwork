@@ -22,12 +22,11 @@ export default function Header() {
           {/* Logo — left */}
           <Link href="/" className="shrink-0 flex items-center gap-3">
             <Image
-              src="/images/logo.jpg"
+              src="/images/logo.png"
               alt="Lala Lucinda's logo"
               width={52}
               height={52}
               className="w-12 h-12 object-contain"
-              style={{ mixBlendMode: 'multiply' }}
               priority
             />
             <div>
