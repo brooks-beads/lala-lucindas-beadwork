@@ -1,6 +1,6 @@
 import { fetchTable } from '@/lib/airtable'
-import Image from 'next/image'
 import CustomOrderForm from './CustomOrderForm'
+import CustomOrderGallery from './CustomOrderGallery'
 
 export const revalidate = 300
 
@@ -136,25 +136,7 @@ export default async function CustomOrdersPage() {
           </div>
 
           {gallery.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {gallery.map((item) => (
-                <div key={item.id} className="aspect-square relative overflow-hidden group">
-                  <Image
-                    src={item.photo}
-                    alt={item.name}
-                    fill
-                    unoptimized
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                  {item.name && (
-                    <div className="absolute inset-0 bg-midnight/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                      <p className="text-cream text-xs tracking-wide font-light">{item.name}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+            <CustomOrderGallery items={gallery} />
           ) : (
             <div className="text-center py-12">
               <p className="text-smoke font-light text-sm leading-relaxed max-w-md mx-auto">
