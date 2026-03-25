@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { useCart } from './CartProvider'
 
@@ -19,7 +20,16 @@ export default function Header() {
         <div className="max-w-screen-xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between gap-8">
 
           {/* Logo — left */}
-          <Link href="/" className="shrink-0">
+          <Link href="/" className="shrink-0 flex items-center gap-3">
+            <Image
+              src="/images/logo.jpg"
+              alt="Lala Lucinda's logo"
+              width={52}
+              height={52}
+              className="w-12 h-12 object-contain"
+              style={{ mixBlendMode: 'multiply' }}
+              priority
+            />
             <div>
               <p className="font-lora text-xl md:text-2xl tracking-wide text-cream leading-none">
                 Lala Lucinda&apos;s
