@@ -9,9 +9,22 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mukta: ['var(--font-mukta)', 'Helvetica', 'Arial', 'sans-serif'],
+        lora: ['var(--font-lora)', 'Georgia', 'Times New Roman', 'serif'],
+        lato: ['var(--font-lato)', 'system-ui', '-apple-system', 'sans-serif'],
+        // kept for any legacy usage
+        mukta: ['var(--font-lato)', 'system-ui', 'sans-serif'],
       },
       colors: {
+        // ── New brand palette ──────────────────────────────────
+        midnight:   '#2C2F38',   // primary dark — backgrounds, headers
+        slate:      '#5A5F67',   // secondary text, captions
+        gold:       '#C9A040',   // accent — CTAs, highlights
+        'gold-light': '#E8C870', // hover states
+        cream:      '#EDE8D8',   // light backgrounds, cards
+        smoke:      '#787060',   // muted text, borders
+        offwhite:   '#F7F4EE',   // page background
+        ink:        '#1A1C22',   // body text
+        // ── Legacy earth palette (kept for backward compat) ────
         earth: {
           50:  '#faf8f5',
           100: '#f2ece2',
@@ -27,15 +40,16 @@ module.exports = {
         sand: '#e8d5b0',
         clay: '#c4715a',
         sage: '#8a9e7d',
-        midnight: '#1e1a16',
       },
       letterSpacing: {
-        widest: '0.2em',
-        wide: '0.1em',
-        normal: '0.071em', // 1px at 14px
+        widest: '0.22em',
+        wider:  '0.12em',
+        wide:   '0.06em',
       },
       lineHeight: {
-        base: '1.643', // 23px at 14px
+        tight:   '1.2',
+        snug:    '1.35',
+        relaxed: '1.75',
       },
     },
   },

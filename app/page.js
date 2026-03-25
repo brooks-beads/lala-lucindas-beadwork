@@ -44,22 +44,20 @@ export default async function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-screen-xl w-full mx-auto">
-          <p className="text-earth-300 text-sm tracking-[0.3em] uppercase mb-4">Pit River Nation · Northern California</p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-white tracking-wide leading-none mb-6 uppercase">
-            Made by<br />
-            <span className="text-sand">hand,</span><br />
-            worn with<br />
-            soul.
+          <p className="text-gold text-xs tracking-[0.3em] uppercase mb-5 font-light">Pit River Nation · Northern California</p>
+          <h1 className="font-lora text-5xl md:text-6xl lg:text-7xl font-normal text-cream tracking-wide leading-tight mb-4">
+            Lala Lucinda&apos;s
           </h1>
-          <p className="text-earth-200 text-base tracking-wide mb-10 max-w-sm font-light leading-relaxed">
+          <h2 className="font-lora text-xl md:text-2xl lg:text-3xl font-normal text-gold tracking-[0.12em] uppercase leading-snug mb-8">
+            Indigenous Handmade Beadwork
+          </h2>
+          <p className="text-cream/70 text-sm tracking-wide mb-10 max-w-sm font-light leading-relaxed">
             Every piece is strung, stitched, and finished by one pair of hands — mine.
             No shortcuts, no machines, no two exactly alike.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link href="#shop" className="btn-ghost">Shop the Collection</Link>
-            <Link href="#about" className="btn-primary bg-sand text-earth-900 border-sand hover:bg-earth-100 hover:border-earth-100">
-              My Story
-            </Link>
+            <Link href="#about" className="btn-primary">My Story</Link>
           </div>
         </div>
       </section>
@@ -72,10 +70,10 @@ export default async function HomePage() {
           {categories.map((cat) => (
             <Link key={cat.slug} href={`/collections/${cat.slug}`} className="group relative aspect-square overflow-hidden">
               <div className={`${cat.placeholderClass} w-full h-full product-img-wrap`} />
-              <div className="absolute inset-0 bg-gradient-to-t from-earth-900/70 via-earth-900/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-midnight/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">
                 <p className="text-white text-xs tracking-[0.25em] uppercase mb-1 opacity-80">Shop</p>
-                <h3 className="text-white text-lg font-light tracking-wide group-hover:text-sand transition-colors">{cat.name}</h3>
+                <h3 className="font-lora text-white text-lg font-normal tracking-wide group-hover:text-gold transition-colors">{cat.name}</h3>
               </div>
             </Link>
           ))}
@@ -137,7 +135,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── ABOUT SECTION ────────────────────────────────────────────── */}
-      <section id="about" className="py-24 px-6 md:px-12 bg-earth-100">
+      <section id="about" className="py-24 px-6 md:px-12 bg-cream">
         <div className="max-w-screen-lg mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div className="aspect-[4/5] relative overflow-hidden">
             <Image
@@ -150,8 +148,8 @@ export default async function HomePage() {
           </div>
           <div>
             <p className="section-label mb-3">The maker</p>
-            <h2 className="text-3xl font-light tracking-wide text-earth-900 mb-6">About Lala Lucinda</h2>
-            <div className="space-y-4 text-earth-700 text-[15px] leading-relaxed font-light">
+            <h2 className="font-lora text-3xl font-normal tracking-wide text-midnight mb-6">About Lala Lucinda</h2>
+            <div className="space-y-4 text-slate text-[15px] leading-relaxed font-light">
               <p>
                 I was eight years old when my grandmother and my mother introduced me to beading.
                 They became my teachers then and I fell in love with it right away. They both guided
@@ -178,7 +176,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── CRAFT STRIP ──────────────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-earth-50 border-t border-earth-200">
+      <section className="py-16 px-6 bg-offwhite border-t border-cream">
         <div className="max-w-screen-xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { icon: '◇', title: 'Handmade',         sub: 'Every piece made by hand in my studio' },
@@ -187,9 +185,9 @@ export default async function HomePage() {
             { icon: '◎', title: 'Ships in 3–5 Days', sub: 'Carefully packed, free over $75' },
           ].map((item) => (
             <div key={item.title} className="flex flex-col items-center">
-              <span className="text-2xl text-earth-500 mb-3">{item.icon}</span>
-              <h3 className="text-sm tracking-widest uppercase text-earth-800 mb-2">{item.title}</h3>
-              <p className="text-sm text-earth-500 leading-relaxed">{item.sub}</p>
+              <span className="text-2xl text-gold mb-3">{item.icon}</span>
+              <h3 className="text-sm tracking-widest uppercase text-midnight mb-2">{item.title}</h3>
+              <p className="text-sm text-smoke leading-relaxed">{item.sub}</p>
             </div>
           ))}
         </div>
