@@ -100,10 +100,8 @@ export default function Footer() {
             <h4 className="text-xs tracking-widest uppercase text-gold font-light mb-4">Info</h4>
             <ul className="space-y-2.5">
               {[
-                { label: 'About Lucinda',    href: '/#about' },
-                { label: 'Care & Materials', href: '/#care' },
-                { label: 'Shipping & Returns', href: '/#shipping' },
-                { label: 'Custom Orders',    href: '/custom-orders' },
+                { label: 'About Lucinda', href: '/#about' },
+                { label: 'Custom Orders', href: '/custom-orders' },
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-smoke text-xs hover:text-gold transition-colors tracking-wide">
