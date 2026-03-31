@@ -6,7 +6,9 @@ import { getProducts, categories } from '@/lib/products'
 export const revalidate = 300
 
 export default async function HomePage() {
-  const allProducts = await getProducts()
+  const allProducts = (await getProducts()).filter(
+    (p) => p.category?.toLowerCase() !== 'custom order'
+  )
   const featured = allProducts.filter((p) => p.featured).length > 0
     ? allProducts.filter((p) => p.featured)
     : allProducts.slice(0, 6)
