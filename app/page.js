@@ -71,7 +71,17 @@ export default async function HomePage() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {categories.map((cat) => (
             <Link key={cat.slug} href={`/collections/${cat.slug}`} className="group relative aspect-square overflow-hidden">
-              <div className={`${cat.placeholderClass} w-full h-full product-img-wrap`} />
+              {cat.image ? (
+                <Image
+                  src={cat.image}
+                  alt={cat.name}
+                  fill
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              ) : (
+                <div className={`${cat.placeholderClass} w-full h-full product-img-wrap`} />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-midnight/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">
                 <p className="text-white text-xs tracking-[0.25em] uppercase mb-1 opacity-80">Shop</p>
