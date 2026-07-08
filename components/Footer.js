@@ -84,7 +84,7 @@ export default function Footer() {
                 { name: 'Earrings',    slug: 'earrings' },
                 { name: 'Rings',       slug: 'rings' },
                 { name: 'Hair Pieces', slug: 'hair-pieces' },
-                { name: 'Apparel',     slug: 'apparel' },
+                { name: 'Accessories', slug: 'accessories' },
               ].map((cat) => (
                 <li key={cat.slug}>
                   <Link href={`/collections/${cat.slug}`} className="text-smoke text-xs hover:text-gold transition-colors tracking-wide">
