@@ -25,8 +25,8 @@ export default function ProductGallery({ photos, name, placeholderClass }) {
           <div className="absolute inset-0 bg-earth-100 animate-pulse" />
         )}
         <Image
-          key={photos[active]}
-          src={photos[active]}
+          key={photos[active].url}
+          src={photos[active].url}
           alt={name}
           width={0}
           height={0}
@@ -41,7 +41,7 @@ export default function ProductGallery({ photos, name, placeholderClass }) {
       {/* Thumbnails — only shown when there are multiple photos */}
       {photos.length > 1 && (
         <div className="flex gap-2">
-          {photos.map((url, i) => (
+          {photos.map((photo, i) => (
             <button
               key={i}
               onClick={() => { setActive(i); setLoaded(false) }}
@@ -52,7 +52,7 @@ export default function ProductGallery({ photos, name, placeholderClass }) {
               }`}
             >
               <Image
-                src={url}
+                src={photo.thumbUrl}
                 alt={`${name} — photo ${i + 1}`}
                 fill
                 unoptimized
