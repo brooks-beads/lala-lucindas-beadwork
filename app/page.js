@@ -9,9 +9,10 @@ export default async function HomePage() {
   const allProducts = (await getProducts()).filter(
     (p) => p.category?.toLowerCase() !== 'custom order'
   )
-  const featured = allProducts.filter((p) => p.featured).length > 0
-    ? allProducts.filter((p) => p.featured)
-    : allProducts.slice(0, 6)
+  const newArrivals = allProducts
+    .filter((p) => p.isNew)
+    .sort((a, b) => new Date(b.createdTime) - new Date(a.createdTime))
+    .slice(0, 12)
 
   return (
     <>
@@ -115,34 +116,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── FEATURED PRODUCTS ────────────────────────────────────────── */}
+      {/* ── NEW ARRIVALS ──────────────────────────────────────────────── */}
       <section id="featured" className="py-20 px-6 md:px-12 max-w-screen-xl mx-auto">
         <p className="section-label text-center mb-2">Handpicked favorites</p>
         <h2 className="section-title text-center mb-12">Shop New Arrivals</h2>
-        {featured.length > 0 ? (
+        {newArrivals.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
-            {featured.map((product) => <ProductCard key={product.id} product={product} />)}
+            {newArrivals.map((product) => <ProductCard key={product.id} product={product} />)}
           </div>
         ) : (
           <p className="text-center text-earth-400 text-sm py-16">New pieces coming soon — check back shortly.</p>
-        )}
-      </section>
-
-      {/* ── ALL PRODUCTS ─────────────────────────────────────────────── */}
-      <section id="all-products" className="py-10 px-6 md:px-12 max-w-screen-xl mx-auto">
-        <div className="flex items-center justify-between mb-10">
-          <div>
-            <p className="section-label mb-1">Everything in the studio</p>
-            <h2 className="section-title">All Pieces</h2>
-          </div>
-          <p className="text-sm tracking-wide text-earth-500">{allProducts.length} pieces</p>
-        </div>
-        {allProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
-            {allProducts.map((product) => <ProductCard key={product.id} product={product} />)}
-          </div>
-        ) : (
-          <p className="text-center text-earth-400 text-sm py-16">Products loading — please check back shortly.</p>
         )}
       </section>
 
